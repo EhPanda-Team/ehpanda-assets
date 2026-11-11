@@ -12,11 +12,9 @@ The icon, banner and screenshots for EhPanda's listings in app marketplaces (Alt
 - The marketplace source files in the app repository link to each image by its raw URL, `https://raw.githubusercontent.com/EhPanda-Team/ehpanda-assets/main/app-marketplace/<path>`. Screenshots are listed together with their width and height in whole pixels.
 - Renaming, moving or resizing an image means updating those source files in the same change; until then the listing shows a broken or distorted image.
 
-### Rounded screenshots
+### Screenshots
 
-AltStore and SideStore show a screenshot as it is, without rounding its corners, so the files in `app-marketplace/iphone/` have the corners already rounded, as on the App Store, and are transparent outside them (RGBA PNG). Do not edit them by hand and do not round them again.
+AltStore rounds a screenshot's corners itself, but only when the image is exactly 9:19.5, the shape of a modern iPhone's screen (it allows a difference of 0.001 in the width-to-height ratio). Any other shape gets square corners and a thin outline. So the screenshots in `app-marketplace/iphone/` are 1260 × 2730 pixels, with square corners and no transparency.
 
-- `source/iphone/` holds the same screenshots as they were taken, with square corners. Replace a screenshot there, never in `app-marketplace/`.
-- `tools/round-corners.swift` reads `source/iphone/` and writes `app-marketplace/iphone/` with the same names and size. Run it from anywhere on a Mac with Xcode: `swift tools/round-corners.swift`. Running it again gives the same files.
-- The radius is the App Store's: the 6.9-inch iPhone screenshots on apps.apple.com (`.iphone-d74.portrait`, for example on https://apps.apple.com/us/app/id310633997) are drawn with `border-radius: 12.8% / 5.7%`, that is 12.8% of the width across and 5.7% of the height down. At 1260 × 2736 pixels that is about 161 × 156 pixels.
-- The corner is the continuous (squircle) corner of iOS, not a quarter circle: the edge starts to bend 1.5287 times the radius before the corner.
+- `source/iphone/` holds the screenshots as they were taken, 1260 × 2736 pixels. That is 0.001 too far from 9:19.5, so each served file is the same screenshot with 3 pixels cut from the top and from the bottom: `sips -c 2730 1260 source/iphone/<name>.png --out app-marketplace/iphone/<name>-1260x2730.png`.
+- The size is in the file name, so a new size is a new URL. AltStore keeps images it has downloaded by URL, and would go on showing the old image under an old one.
