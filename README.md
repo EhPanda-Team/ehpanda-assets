@@ -17,4 +17,5 @@ The icon, banner and screenshots for EhPanda's listings in app marketplaces (Alt
 AltStore rounds a screenshot's corners itself, but only when the image is exactly 9:19.5, the shape of a modern iPhone's screen (it allows a difference of 0.001 in the width-to-height ratio). Any other shape gets square corners and a thin outline. So the screenshots in `app-marketplace/iphone/` are 1260 × 2730 pixels, with square corners and no transparency.
 
 - `source/iphone/` holds the screenshots as they were taken, 1260 × 2736 pixels. That is 0.001 too far from 9:19.5, so each served file is the same screenshot with 3 pixels cut from the top and from the bottom: `sips -c 2730 1260 source/iphone/<name>.png --out app-marketplace/iphone/<name>-1260x2730.png`.
+- The first screenshot, `01-home-v2-1260x2730.png` (the home screen with the slogan), was made at 1260 × 2730, so it has no original in `source/iphone/`. It is in English, as AltStore and SideStore show every person the same screenshots whatever their language.
 - The size is in the file name, so a new size is a new URL. AltStore keeps images it has downloaded by URL, and would go on showing the old image under an old one.
