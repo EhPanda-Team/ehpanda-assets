@@ -1,6 +1,6 @@
 # EhPanda assets
 
-Images for EhPanda that are served from this repository rather than kept in the app repository.
+Images for EhPanda that are kept in this repository rather than in the app repository.
 
 ## `app-marketplace/`
 
@@ -18,3 +18,11 @@ AltStore rounds a screenshot's corners itself, but only when the image is exactl
 
 - A screenshot taken at 1260 × 2736 is 0.001 too far from 9:19.5, so 3 pixels are cut from its top and from its bottom (`sips -c 2730 1260 <taken>.png --out app-marketplace/iphone/<name>.png`).
 - The screenshots are in English, as AltStore and SideStore show every person the same screenshots whatever their language.
+
+## `app-store/`
+
+The screenshots for EhPanda's App Store listing. They are uploaded to App Store Connect rather than served from here.
+
+- `iphone/` holds the iPhone screenshots. Each shows the same screen as the screenshot of the same name in `app-marketplace/iphone/`, and the names follow the same rule.
+- They are 1206 × 2622 pixels, the size App Store Connect requires for iPhone with Dynamic Island (medium display), with square corners and no transparency: App Store Connect refuses images with an alpha channel.
+- They are in English.
