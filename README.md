@@ -8,7 +8,7 @@ The icon, banner and screenshots for EhPanda's listings in app marketplaces (Alt
 
 - `icon.png` is the app icon, 1024 × 1024 pixels, square and without rounded corners or transparency: AltStore and SideStore round it themselves. It is the artwork of the app's own icon (`App/EhPanda.icon` in the app repository).
 - `header.png` is the banner at the top of a source's page in AltStore, 2400 × 1600 pixels (3:2, as AltStore recommends) and without text, because AltStore shows it blurred until it is swiped. Every source uses the same one.
-- `iphone/` holds the screenshots, one folder per device. File names are a two-digit number, which is the image's position in the listing, and a short name for the screen, with no version or size.
+- `iphone/` and `ipad/` hold the screenshots, one folder per device. File names are a two-digit number, which is the image's position in the listing, and a short name for the screen, with no version or size.
 - The marketplace source files in the app repository link to each image by its raw URL, `https://raw.githubusercontent.com/EhPanda-Team/ehpanda-assets/main/app-marketplace/<path>`. Screenshots are listed together with their width and height in whole pixels.
 - Renaming, moving or resizing an image means updating those source files in the same change; until then the listing shows a broken or distorted image.
 
@@ -19,6 +19,8 @@ AltStore rounds a screenshot's corners itself, but only when the image is exactl
 - A screenshot taken at 1260 × 2736 is 0.001 too far from 9:19.5, so 3 pixels are cut from its top and from its bottom (`sips -c 2730 1260 <taken>.png --out app-marketplace/iphone/<name>.png`).
 - The screenshots are in English, as AltStore and SideStore show every person the same screenshots whatever their language.
 
+The screenshots in `app-marketplace/ipad/` are 2752 × 2064 pixels, 4:3 in landscape, the screen of the 13-inch iPad Pro they were taken on, with square corners and no transparency. App Store Connect accepts the same size for the 13-inch iPad, so the App Store listing uses these files too.
+
 ## `app-store/`
 
 The screenshots for EhPanda's App Store listing. They are uploaded to App Store Connect rather than served from here.
@@ -26,3 +28,4 @@ The screenshots for EhPanda's App Store listing. They are uploaded to App Store 
 - `iphone/` holds the iPhone screenshots. Each shows the same screen as the screenshot of the same name in `app-marketplace/iphone/`, and the names follow the same rule.
 - They are 1206 × 2622 pixels, the size App Store Connect requires for iPhone with Dynamic Island (medium display), with square corners and no transparency: App Store Connect refuses images with an alpha channel.
 - They are in English.
+- The iPad screenshots are the ones in `app-marketplace/ipad/`: one set serves both listings.
